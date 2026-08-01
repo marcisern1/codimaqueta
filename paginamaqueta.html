@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maqueta de casa bioclimàtica</title>
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+body{
+    background:#F7F4ED;
+    color:#37474F;
+    line-height:1.5;
+}
+
+header{
+    background:linear-gradient(135deg,#4F8A5B,#7BAE7F);
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.capcalera-text{
+    display:flex;
+    flex-direction:column;
+}
+
+header h2{
+    font-size:23px;
+    font-weight:600;
+}
+.nom{
+    font-size:18px;
+    margin-top:3px;
+    opacity:.9;
+}
+
+#selectorModes{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+main{
+    max-width:1100px;
+    margin:35px auto;
+    padding:20px;
+}
+
+.titol{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.titol h2{
+    font-size:34px;
+    color:#4F8A5B;
+    margin-bottom:10px;
+}
+
+.titol p{
+    color:#636161;
+}
+
+.categoria{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:30px;
+    box-shadow:0 6px 15px rgba(0,0,0,.08);
+}
+
+.meteorologia{
+    border-left:8px solid #5E9C76;
+}
+
+.portes{
+    border-left:8px solid #9C7A4D;
+}
+
+.llums{
+    border-left:8px solid #fffd87;
+}
+
+.solar{
+    border-left:8px solid #f89a6e;
+}
+
+.subtitol{
+    font-size:24px;
+    color:#4F8A5B;
+    margin-bottom:18px;
+    font-weight:bold;
+}
+
+ul{
+    list-style:none;
+}
+
+li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid #ECECEC;
+}
+li:last-child{
+    border-bottom:none;
+}
+
+.dada{
+    font-weight:600;
+}
+
+.valor{
+    min-width:120px;
+    text-align:center;
+    padding:7px 14px;
+    border-radius:25px;
+    background:#E8F3E6;
+    color:#2E5E37;
+    border:1px solid #C7DEC1;
+    font-weight:bold;
+}
+
+.boto-edicio{
+    background:#E8F3E6;
+    color:#2E5E37;
+    border:1px solid #C7DEC1;
+    padding:10px 20px;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+.boto-edicio:hover{
+    background:#edf5eb;
+}
+.edicio{
+    display:none;
+}
+.switch{
+    width:50px;
+    height:25px;
+    appearance:none;
+    background:#ccc;
+    border-radius:25px;
+    position:relative;
+    cursor:pointer;
+}
+.switch:before{
+    content:"";
+    width:21px;
+    height:21px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    top:2px;
+    left:3px;
+    transition:.3s;
+}
+.switch:checked{
+    background:#4F8A5B;
+}
+.switch:checked:before{
+    transform:translateX(23px);
+}
+input,select{
+    padding:7px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    text-align:center;
+    font-weight:bold;
+}
+.boto-envia{
+    display:none;
+    margin:30px auto;
+    margin-top:2px;
+    background:#4F8A5B;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+.boto-envia:hover{
+    background:#3d7048;
+}
+
+footer{
+    background:#37474F;
+    color:white;
+    text-align:center;
+    padding:18px;
+    margin-top:40px;
+}
+.indicador-mode{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 20px;
+    border-radius:25px;
+    background:#E8F3E6;
+    color:#2E5E37;
+    font-weight:bold;
+    border:1px solid #C7DEC1;
+}
+
+@media(max-width:700px){
+header{
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+}
+#selectorModes{
+    flex-direction:column;
+}
+
+.titol h2{
+    font-size:28px;
+}
+
+li{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+}
+.valor{
+    width:100%;
+}
+}
+
+</style>
+
+</head>
+<body>
+
+
+<header>
+    <div class="capcalera-text">
+        <h2>Treball de Recerca</h2>
+        <div class="nom">Marc Isern Abelló</div>
+    </div>
+    <div id="selectorModes">
+        <button id="botoNormal" class="boto-edicio" onclick="modeNormal()">🏠 Visualització</button>
+        <button id="botoSimulacio" class="boto-edicio" onclick="modeSimulacio()">📱 Simulació</button>
+        <button id="botoDomotic" class="boto-edicio" onclick="modeDomotic()">⚙️ Domòtic</button>
+    </div>
+</header>
+
+<main>
+<div class="titol">
+    <h2>Maqueta de casa bioclimàtica amb domòtica integrada</h2>
+    <p>Control i visualització dels sensors i actuadors de la maqueta des del punt d'accés de l'ESP32</p>
+    <div id="modeActual" class="indicador-mode">🏠 Mode de visualització</div>
+</div>
+<button id="botoEnviar" class="boto-envia" onclick="enviarValors()">📤 Envia els valors a la placa ESP32</button>
+
+<div class="categoria meteorologia zona-simulacio">
+    <div class="subtitol">🌦 Dades meteorològiques</div>
+    <ul>
+        <li>
+            <div class="dada">Temperatura interior</div>
+            <div class="valor visual">-- °C</div>
+            <div class="edicio simulacio">
+                <input type="number" value="25"> °C
+            </div>
+        </li>
+        <li>
+            <div class="dada">Temperatura exterior</div>
+            <div class="valor visual">-- °C</div>
+            <div class="edicio simulacio">
+                <input type="number" value="28"> °C
+            </div>
+        </li>
+        <li>
+            <div class="dada">Humitat interior</div>
+            <div class="valor visual">-- %</div>
+            <div class="edicio simulacio">
+                <input type="number" value="50"> %
+            </div>
+        </li>
+        <li>
+            <div class="dada">Humitat exterior</div>
+            <div class="valor visual">-- %</div>
+            <div class="edicio simulacio">
+                <input type="number" value="60"> %
+            </div>
+        </li>
+        <li>
+            <div class="dada">Pluja</div>
+            <div class="valor visual">--</div>
+            <div class="edicio simulacio">
+                <select>
+                    <option>Sí</option>
+                    <option>No</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <div class="dada">Llum</div>
+            <div class="valor visual">-- /10</div>
+            <div class="edicio simulacio"><input type="number"min="0"max="10"value="5"> /10</div>
+        </li>
+        <li class="nomes-normal">
+            <div class="dada">Estat meteorològic</div>
+            <div class="valor visual">--</div>
+        </li>
+        <li class="nomes-normal">
+            <div class="dada">Mode funcionament</div>
+            <div class="valor visual">--</div>
+        </li>
+    </ul>
+</div>
+
+<div class="categoria llums zona-domotic">
+    <div class="subtitol">💡 Estat dels leds</div>
+    <ul>
+        <li>
+            <div class="dada">Llums interiors</div>
+            <div class="valor visual">--</div>
+            <div class="edicio domotic">
+                <input class="switch" type="checkbox">
+            </div>
+        </li>
+        <li>
+            <div class="dada">Llums exteriors</div>
+            <div class="valor visual">--</div>
+            <div class="edicio domotic">
+                <input class="switch" type="checkbox">
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="categoria portes zona-domotic">
+    <div class="subtitol">🚪 Estat de portes i finestres</div>
+    <ul>
+        <li>
+            <div class="dada">Porta principal</div>
+            <div class="valor visual">--</div>
+            <div class="edicio domotic">
+                <input class="switch" type="checkbox">
+            </div>
+        </li>
+        <li>
+            <div class="dada">Finestra sud</div>
+            <div class="valor visual">--</div>
+            <div class="edicio domotic">
+                <input class="switch" type="checkbox">
+            </div>
+        </li>
+        <li>
+            <div class="dada">Finestra nord</div>
+            <div class="valor visual">--</div>
+            <div class="edicio domotic">
+                <input class="switch" type="checkbox">
+            </div>
+        </li>
+        <li>
+            <div class="dada">Tancament del menjador</div>
+            <div class="valor visual">--</div>
+            <div class="edicio domotic">
+                <input class="switch" type="checkbox">
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="categoria solar zona-normal">
+    <div class="subtitol">☀ Energia solar</div>
+    <ul>
+        <li>
+            <div class="dada">Voltatge</div>
+            <div class="valor">-- V</div>
+        </li>
+        <li>
+            <div class="dada">Intensitat</div>
+            <div class="valor">-- mA</div>
+        </li>
+        <li>
+            <div class="dada">Potència</div>
+            <div class="valor">-- W</div>
+        </li>
+        <li>
+            <div class="dada">Estat de la bateria</div>
+            <div class="valor">--</div>
+        </li>
+    </ul>
+</div>
+</main>
+
+
+<footer>
+
+<p>Marc Isern Abelló · Maqueta de casa bioclimàtica amb domòtica integrada</p>
+<p>Treball de Recerca de Batxillerat · Curs 2026-2027</p>
+
+</footer>
+
+
+<script>
+
+let modeActual = "normal";
+
+function actualitzarVista(){
+    document.querySelectorAll(".categoria").forEach(e=>{
+        e.style.display="none";
+    });
+    document.getElementById("botoEnviar").style.display = "none";
+    document.querySelectorAll(".edicio").forEach(e=>{
+        e.style.display="none";
+    });
+    document.querySelectorAll(".visual").forEach(e=>{
+        e.style.display="block";
+    });
+
+    if(modeActual=="normal"){
+        document.querySelectorAll(".categoria")
+        .forEach(e=>{
+            e.style.display="block";
+        });
+    }
+
+    if(modeActual=="simulacio"){
+        document.querySelector(".meteorologia")
+        .style.display="block";
+
+        document.querySelectorAll(".meteorologia .visual")
+        .forEach(e=>{
+            e.style.display="none";
+        });
+
+        document.querySelectorAll(".edicio.simulacio")
+        .forEach(e=>{
+            e.style.display="block";
+        });
+
+        document.querySelectorAll(".nomes-normal")
+        .forEach(e=>{
+            e.style.display="none";
+        });
+        document.getElementById("botoEnviar").style.display = "block";
+    }
+
+    if(modeActual=="domotic"){
+        document.querySelector(".llums")
+        .style.display="block";
+        document.querySelector(".portes")
+        .style.display="block";
+
+        document.querySelectorAll(
+            ".llums .visual, .portes .visual"
+        )
+        .forEach(e=>{
+            e.style.display="none";
+        });
+
+        document.querySelectorAll(".edicio.domotic")
+        .forEach(e=>{
+            e.style.display="block";
+        });
+        document.getElementById("botoEnviar").style.display = "block";
+    }
+    actualitzarBotons();
+}
+
+function modeNormal(){
+    modeActual="normal";
+    actualitzarVista();
+}
+function modeSimulacio(){
+    modeActual="simulacio";
+    actualitzarVista();
+}
+function modeDomotic(){
+    modeActual="domotic";
+    actualitzarVista();
+}
+
+function actualitzarBotons(){
+    document.getElementById("botoNormal").style.display =
+    modeActual=="normal" ? "none" : "block";
+    document.getElementById("botoSimulacio").style.display =
+    modeActual=="simulacio" ? "none" : "block";
+    document.getElementById("botoDomotic").style.display =
+    modeActual=="domotic" ? "none" : "block";
+ let indicador=document.getElementById("modeActual");
+    if(modeActual=="normal"){
+        indicador.innerHTML="🏠 Mode de visualització";
+    }
+    if(modeActual=="simulacio"){
+        indicador.innerHTML="📱 Mode de simulació";
+    }
+    if(modeActual=="domotic"){
+        indicador.innerHTML="⚙️ Mode de control domòtic";
+    }
+}
+
+function enviarValors(){
+
+}
+
+setInterval(()=>{
+    if(modeActual=="normal"){
+        location.reload();
+    }
+},2000);
+
+
+// inici
+actualitzarVista();
+</script>
+</body>
