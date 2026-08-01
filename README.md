@@ -1,6 +1,9 @@
 # 🏠 Maqueta de casa bioclimàtica amb domòtica integrada
 
 Aquest repositori conté el codi desenvolupat per al meu **Treball de Recerca de Batxillerat**, basat en una maqueta de casa bioclimàtica controlada per una ESP32.
+## Fitxers disponibles al repositori
+- Fitxer .ino amb el programa que controla la maqueta i la connexió per WiFi (programat des de l'Arduino IDE).
+- Fitxer .html addicional amb la pàgina web que es visualitza durant la connexió amb l'ESP32. Aquest codi està també incorporat al fitxer princial .ino.
 
 ## Funcionalitats
 - Control automàtic de finestres i portes.
