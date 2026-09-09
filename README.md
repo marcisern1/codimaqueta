@@ -3,14 +3,14 @@
 Aquest repositori conté el codi desenvolupat per al meu **Treball de Recerca de Batxillerat**, basat en una maqueta de casa bioclimàtica controlada per una ESP32.
 ## Fitxers disponibles al repositori
 - Fitxer .ino amb el programa que controla la maqueta i la connexió per WiFi (programat des de l'Arduino IDE).
-- Fitxer .html addicional amb la pàgina web que es visualitza durant la connexió amb l'ESP32. Aquest codi està també incorporat al fitxer principal .ino.
+- Fitxer .html addicional amb la pàgina web que es visualitza durant la connexió amb l'ESP32. Aquest codi està incorporat també al fitxer principal .ino.
 
 ## Funcionalitats
 - Control automàtic de finestres i portes.
 - Monitoratge de temperatura, humitat, llum i pluja.
 - Control d'accés mitjançant RFID.
 - Monitoratge energètic amb INA219.
-- Pàgina web per visualització, simulació i control domòtic.
+- Pàgina web per visualització i simulació de dades i control domòtic.
 
 ## Components principals
 - ESP32
